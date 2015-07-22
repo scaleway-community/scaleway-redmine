@@ -12,6 +12,11 @@ sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /etc/update-motd.d/60-app
 sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /root/README
 sed -i "s/password:/password: $MYSQL_ROOT_PASSWORD/" /usr/share/redmine/config/database.yml
 
+cat << EOF > /root/.my.cnf
+user=root
+password=${MYSQL_ROOT_PASSWORD}
+EOF
+
 # Let's install MySQL
 chmod 1777 /tmp
 /etc/init.d/mysql start
