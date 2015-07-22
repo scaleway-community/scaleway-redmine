@@ -1,0 +1,27 @@
+#!/bin/bash
+
+METADATA=$(oc-metadata --cached)
+
+metadata() {
+    key=$1
+    echo "$METADATA" | grep "^$key=" | cut -d= -f2 | sed "s/^['\"]//;s/['\"]$//"
+}
+
+PUBLIC_IP=$(metadata PUBLIC_IP_ADDRESS)
+
+cat <<EOF
+
+Hi Cloud Rider,
+Welcome to the Redmine image!
+
+Redmine 3.0.4 is installed in /usr/share/redmine.
+Log into Redmine at http://${PUBLIC_IP}/. Default login/password is admin/admin.
+/!\ Do not forget to change the password!
+
+MySQL is configured for user root with password {mysql_root_password}.
+
+Your website configuration lies at:
+- /etc/apache2/sites-available/000-default.conf
+Enjoy!
+
+EOF

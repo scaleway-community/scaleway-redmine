@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# We need this extra script run ONCE on startup to initialize the
+# database with per-image passwords.
+
+export DEBIAN_FRONTEND=noninteractive
+
+MYSQL_ROOT_PASSWORD=$(head /dev/urandom -c 512 | sha1sum | awk '// { print $1; }')
+
+# MOTD & README
+sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /etc/update-motd.d/60-app-redmine
+sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /root/README
+sed -i "s/password:/password: $MYSQL_ROOT_PASSWORD/" /usr/share/redmine/config/database.yml
+
+# Let's install MySQL
+chmod 1777 /tmp
+/etc/init.d/mysql start
+mysqladmin -u root password $MYSQL_ROOT_PASSWORD
+
+# this service is only needed on the first boot so we remove it here.
+rm -f /etc/init/init-mysql.conf
+rm -f /usr/local/sbin/oc-init-php-mysql
