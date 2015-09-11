@@ -1,5 +1,4 @@
-DOCKER_NAMESPACE =	armbuild/
-NAME =			scw-app-redmine
+NAME =			redmine
 VERSION =		latest
 VERSION_ALIASES =	3.0.4 3.0 3
 TITLE =			Redmine
