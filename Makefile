@@ -4,7 +4,7 @@ VERSION =		latest
 VERSION_ALIASES =	3.0.4 3.0 3
 TITLE =			Redmine
 DESCRIPTION =		Redmine is a flexible project management web application
-SOURCE_URL =		https://github.com/scaleway/image-app-redmine
+SOURCE_URL =		https://github.com/scaleway-community/scaleway-redmine
 DOC_URL =		https://scaleway.com/docs/getting-started-with-the-redmine-instant-apps/
 VENDOR_URL =		http://www.redmine.org/
 
