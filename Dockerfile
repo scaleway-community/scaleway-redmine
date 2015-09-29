@@ -33,11 +33,11 @@ RUN wget http://www.redmine.org/releases/redmine-$REDMINE_VERSION.tar.gz \
   && tar -xzf redmine-$REDMINE_VERSION.tar.gz -C /usr/share/ \
   && mv /usr/share/redmine-$REDMINE_VERSION /usr/share/redmine \
   && cd /usr/share/redmine \
-  && bundle install --without development test
+  && bundle install --without development test \
   && rake generate_secret_token \
   && mkdir -p tmp public/plugin_assets \
   && chown -R www-data:www-data files log tmp public/plugin_assets \
-  && chmod -R 755 files log tmp public/plugin_assets
+  && chmod -R 755 files log tmp public/plugin_assets \
   && cd /var/www/html && ln -s /usr/share/redmine .
 
 
