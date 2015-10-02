@@ -12,7 +12,7 @@ RUN apt-get -q update \
     ruby-dev \
     apache2 \
     mysql-server-5.5 \
-    libmysqlclient-dev
+    libmysqlclient-dev \
     libapache2-mod-passenger \
     postfix \
     zlib1g-dev \
