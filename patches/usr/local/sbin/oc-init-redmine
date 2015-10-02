@@ -23,5 +23,5 @@ chmod 1777 /tmp
 mysqladmin -u root password $MYSQL_ROOT_PASSWORD
 
 # this service is only needed on the first boot so we remove it here.
-rm -f /etc/init/init-mysql.conf
-rm -f /usr/local/sbin/oc-init-php-mysql
+rm -f /etc/init/init-redmine.conf
+rm -f /usr/local/sbin/oc-init-redmine
