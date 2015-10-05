@@ -32,8 +32,14 @@ RUN gem update \
  && wget http://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz \
  && tar -xzf redmine-${REDMINE_VERSION}.tar.gz -C /usr/share/ \
  && rm -f redmine-${REDMINE_VERSION}.tar.gz \
- && mv /usr/share/redmine-${REDMINE_VERSION} /usr/share/redmine \
- && cd /usr/share/redmine \
+ && mv /usr/share/redmine-${REDMINE_VERSION} /usr/share/redmine
+
+# Patches
+ADD patches/etc/ /etc/
+ADD patches/usr/ /usr/
+ADD patches/root/ /root/
+
+RUN cd /usr/share/redmine \
  && bundle install --without development test \
  && rake generate_secret_token \
  && mkdir -p tmp public/plugin_assets \
@@ -42,11 +48,6 @@ RUN gem update \
  && cd /var/www/html \
  && ln -s /usr/share/redmine .
 
-
-# Patches
-ADD patches/etc/ /etc/
-ADD patches/usr/ /usr/
-ADD patches/root/ /root/
 
 RUN /etc/init.d/mysql start \
  && mysql -u root -e "CREATE DATABASE redmine CHARACTER SET utf8;" \
