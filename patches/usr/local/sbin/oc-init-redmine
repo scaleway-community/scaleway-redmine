@@ -13,6 +13,7 @@ sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /root/README
 sed -i "s/password:/password: $MYSQL_ROOT_PASSWORD/" /usr/share/redmine/config/database.yml
 
 cat << EOF > /root/.my.cnf
+[client]
 user=root
 password=${MYSQL_ROOT_PASSWORD}
 EOF
