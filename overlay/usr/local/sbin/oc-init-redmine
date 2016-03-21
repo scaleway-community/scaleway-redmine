@@ -23,6 +23,10 @@ chmod 1777 /tmp
 /etc/init.d/mysql start
 mysqladmin -u root password $MYSQL_ROOT_PASSWORD
 
+# generate a new secret token
+(cd /usr/share/redmine; rake generate_secret_token)
+
+
 # this service is only needed on the first boot so we remove it here.
 rm -f /etc/init/init-redmine.conf
 rm -f /usr/local/sbin/oc-init-redmine
