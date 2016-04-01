@@ -56,7 +56,8 @@ COPY ./overlay/ /
 RUN cd /usr/share/redmine \
  && bundle install --without development test \
  && rake generate_secret_token \
- && mkdir -p tmp public/plugin_assets \
+ && mkdir -p tmp public/plugin_assets log \
+ && touch log/production.log \
  && chown -R www-data:www-data files log tmp public/plugin_assets \
  && chmod -R 755 files log tmp public/plugin_assets \
  && cd /var/www/html \
