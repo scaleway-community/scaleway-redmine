@@ -36,7 +36,7 @@ RUN apt-get -qq update \
 
 
 # Install Redmine
-ENV REDMINE_VERSION=3.0.4
+ENV REDMINE_VERSION=4.0.2
 
 
 RUN gem update \
